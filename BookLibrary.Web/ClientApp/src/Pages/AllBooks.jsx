@@ -1,9 +1,11 @@
 ﻿import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AllBooks = () => {
 
     const [books, setBooks] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -20,6 +22,11 @@ const AllBooks = () => {
         <div style={{ margin: 65 }}>
             <h1>All Books</h1>
             <hr />
+            <br />
+            {!books ?
+                <div>
+            <h1>Loading...</h1>
+            </div> : 
             <table className='table table-striped table-hover'>
                 <thead>
                     <tr>
@@ -35,14 +42,14 @@ const AllBooks = () => {
                     {books && books.map(b =>
                         <tr key={b.id}>
                             <td>{b.id}</td>
-                            <td>{b.title}</td>
+                            <td onClick={_ => navigate(`/book/${b.id}`)} style={{ cursor: 'pointer', textDecorationColor: 'coral', textDecorationLine: 'underline', color: 'coral' }}>{b.title}</td>
                             <td>{b.author}</td>
                             <td>{b.totalAmt}</td>
-                            <td>{b.backText.count()}</td>
+                            <td>{b.backText}</td>
                             <td>{b.tags}</td>
                         </tr>)}
                 </tbody>
-            </table>
+                </table>}
         </div>
     )
 };
