@@ -103,7 +103,7 @@ const UsersPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {users && users.filter(u => u.name.toLowerCase().includes(searchText.toLowerCase())).map(u =>
+                        {users && users.filter(u => u.name.toLowerCase().includes(searchText.toLowerCase()) || u.email.toLowerCase().includes(searchText.toLowerCase())).map(u =>
                             <tr key={u.id}>
                                 <td>{u.id}</td>
                                 <td onClick={_ => onEditClick(u.id)} style={{ cursor: 'pointer', textDecorationColor: 'coral', textDecorationLine: 'underline', color: 'coral' }} >{u.name}</td>

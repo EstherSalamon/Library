@@ -23,6 +23,7 @@ const AllBooks = () => {
             <h1>All Books</h1>
             <hr />
             <br />
+            <button className='btn btn-info' onClick={_ => navigate('/addbook') }>Add Book</button>
             {!books ?
                 <div>
             <h1>Loading...</h1>
@@ -45,7 +46,7 @@ const AllBooks = () => {
                             <td onClick={_ => navigate(`/book/${b.id}`)} style={{ cursor: 'pointer', textDecorationColor: 'coral', textDecorationLine: 'underline', color: 'coral' }}>{b.title}</td>
                             <td>{b.author}</td>
                             <td>{b.totalAmt}</td>
-                            <td>{b.backText}</td>
+                            <td>{b.backText.length < 105 ? b.backText : b.backText.substring(0, 105) + '...'}</td>
                             <td>{b.tags}</td>
                         </tr>)}
                 </tbody>
