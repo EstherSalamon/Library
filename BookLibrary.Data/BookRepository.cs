@@ -153,6 +153,22 @@ namespace BookLibrary.Data
             }
         }
 
+        public List<string> GetAllTags()
+        {
+            List<string> allTags = new List<string>();
+            using LibraryDataContext context = new LibraryDataContext(_connection);
+            allTags = context.Books.SelectMany(b => b.TagsList).ToList();
+            List<string> filteredTags = new List<string>();
+            foreach(string s in allTags)
+            {
+                if(!filteredTags.Contains(s))
+                {
+                    filteredTags.Add(s);
+                }
+            }
+
+            return filteredTags;
+        }
 
         //ve a dbset of people and a dbset of allbooks, and when add person/book, it checks if it exists and if not, adds it to list and if yeah, uses that id, so that when 'checkout', can get list of books for autocomplete, which searches
     }

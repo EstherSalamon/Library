@@ -23,33 +23,33 @@ const AllBooks = () => {
             <h1>All Books</h1>
             <hr />
             <br />
-            <button className='btn btn-info' onClick={_ => navigate('/addbook') }>Add Book</button>
+            <button className='btn btn-info' onClick={_ => navigate('/addbook')}>Add Book</button>
             {!books ?
                 <div>
-            <h1>Loading...</h1>
-            </div> : 
-            <table className='table table-striped table-hover'>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Total Amount</th>
-                        <th>Back of Book</th>
-                        <th>Tags</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {books && books.map(b =>
-                        <tr key={b.id}>
-                            <td>{b.id}</td>
-                            <td onClick={_ => navigate(`/book/${b.id}`)} style={{ cursor: 'pointer', textDecorationColor: 'coral', textDecorationLine: 'underline', color: 'coral' }}>{b.title}</td>
-                            <td>{b.author}</td>
-                            <td>{b.totalAmt}</td>
-                            <td>{b.backText.length < 105 ? b.backText : b.backText.substring(0, 105) + '...'}</td>
-                            <td>{b.tags}</td>
-                        </tr>)}
-                </tbody>
+                    <h1>Loading...</h1>
+                </div> :
+                <table className='table table-striped table-hover'>
+                    <thead>
+                        <tr>
+                            <th style={{ width: 5 }}>Id</th>
+                            <th style={{ width: 55 }}>Title</th>
+                            <th style={{ width: 55 }}>Author</th>
+                            <th style={{ width: 15 }}>Total Amount</th>
+                            <th style={{ width: 85 }}>Back of Book</th>
+                            <th style={{ width: 55 }}>Tags</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {books && books.map(b =>
+                            <tr key={b.id}>
+                                <td>{b.id}</td>
+                                <td onClick={_ => navigate(`/book/${b.id}`)} style={{ cursor: 'pointer', textDecorationColor: 'coral', textDecorationLine: 'underline', color: 'coral' }}>{b.title}</td>
+                                <td>{b.author}</td>
+                                <td>{b.totalAmt}</td>
+                                <td>{b.backText.length < 105 ? b.backText : b.backText.substring(0, 105) + '... (read more)'}</td>
+                                <td>{b.tags}</td>
+                            </tr>)}
+                    </tbody>
                 </table>}
         </div>
     )

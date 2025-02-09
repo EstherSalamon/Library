@@ -47,5 +47,13 @@ namespace BookLibrary.Web.Controllers
             BookRepository repo = new BookRepository(_connection);
             repo.UpdateBook(vm.Book);
         }
+
+        [HttpGet]
+        [Route("alltags")]
+        public List<string> GetAllTags()
+        {
+            BookRepository repo = new BookRepository(_connection);
+            return repo.GetAllTags();
+        }
     }
 }
