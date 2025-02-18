@@ -11,7 +11,8 @@ const SpecificBook = () => {
         author: '',
         totalAmt: '',
         backText: '',
-        tags: ''
+        tags: '',
+        img: ''
     });
 
     useEffect(() => {
@@ -31,7 +32,7 @@ const SpecificBook = () => {
             <hr />
             <h4>By {book.author}</h4>
             <br />
-            <img src='/Images/book.jpg' />
+            <img src={`/api/book/getimg?img=${book.img}`} />
             <br/>
             <h4>Inventory: {book.totalAmt}</h4>
             <h4>Currently Available: figure out how to get</h4>

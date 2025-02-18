@@ -15,7 +15,10 @@ namespace BookLibrary.Data
         public int TotalAmt { get; set; }
         public string BackText { get; set; }
         public string Tags { get; set; }
-        //[NotMapped]
+        [NotMapped]
         public List<string> TagsList { get; set; }
+        [NotMapped]
+        public string Base64 { get; set; }
+        public string Img { get; set; }
     }
 }

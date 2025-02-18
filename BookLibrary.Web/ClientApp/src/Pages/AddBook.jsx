@@ -1,27 +1,29 @@
 ﻿import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AddBook = () => {
     const [book, setBook] = useState({
         title: '',
         author: '',
-        imgURL: '',
-        base64: '',
+        //imgURL: '',
+        //base64: '',
         totalAmt: '',
         backText: '',
-        tags: []
+        tags: ''
     });
+    // const [allTags, setAllTags] = useState([]);
     const imgRef = useRef();
-    const [allTags, setAllTags] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
 
-        const getData = async () => {
-            const { data } = await axios.get('/api/book/getalltags');
-            console.log(data);
-            setAllTags(data);
-        };
-        getData();
+        //const getData = async () => {
+        //    const { data } = await axios.get('/api/book/getalltags');
+        //    console.log(data);
+        //    setAllTags(data);
+        //};
+        //getData();
 
     }, []);
 
@@ -38,27 +40,22 @@ const AddBook = () => {
         setBook(copy);
     };
 
-    const onTagAdd = e => {
-        const copy = [...book.tags];
-        copy.push(e.target.value);
-        const bookCopy = { ...book };
-        bookCopy.tags = copy;
-        setBook(bookCopy);
-    }
+    //const onTagAdd = e => {
+    //    const copy = [...book.tags];
+    //    copy.push(e.target.value);
+    //    const bookCopy = { ...book };
+    //    bookCopy.tags = copy;
+    //    setBook(bookCopy);
+    //}
 
-    const onImgChange = e => {
-        const copy = { ...book };
-        copy.imgURL = e.target.files[0];
-        setBook(copy);
-    }
-
-    const onAddBook = () => {
+    const onAddBook = async () => {
+        if (!imgRef.current.files.length) {
+            return;
+        }
         const file = imgRef.current.files[0];
-        const base64 = toBase64(file);
-        const copy = { ...book };
-        copy.base64 = base64;
-        setBook(copy);
-        console.log(copy);
+        const base64 = await toBase64(file);
+        await axios.post('/api/book/add', { Book: {...book, base64 } });
+        navigate('/books')
     }
 
     return (
@@ -73,9 +70,9 @@ const AddBook = () => {
             <br />
             <textarea className='form-control' rows='8' name='backText' value={book.backText} onChange={e => onTextChange(e)}></textarea>
             <br />
-            <input type='text' name='tags' placeholder='Tags' className='form-control' value={book.tags} onChange={e => onTagAdd(e)} />
+            <input type='text' name='tags' placeholder='Tags' className='form-control' value={book.tags} onChange={e => onTextChange(e)} />
             <br />
-            <input type='file' name='coverImg' className='form-control' ref={imgRef} onChange={e => onImgChange(e)} />
+            <input type='file' name='coverImg' className='form-control' ref={imgRef} />
             <br />
             <button className='btn btn-info w-100' onClick={onAddBook}>Add Book</button>
         </div>

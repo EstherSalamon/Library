@@ -11,6 +11,7 @@ const AllBooks = () => {
 
         const loadBooks = async () => {
             const { data } = await axios.get('/api/book/getall');
+            console.log(data);
             setBooks(data);
         };
 

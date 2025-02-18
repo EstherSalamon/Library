@@ -4,6 +4,7 @@ using BookLibrary.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookLibrary.Data.Migrations
 {
     [DbContext(typeof(LibraryDataContext))]
-    partial class LibraryDataContextModelSnapshot : ModelSnapshot
+    [Migration("20250218161535_Better")]
+    partial class Better
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,9 +37,6 @@ namespace BookLibrary.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BackText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Img")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Tags")
