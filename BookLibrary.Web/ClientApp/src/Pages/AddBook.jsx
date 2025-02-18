@@ -6,8 +6,6 @@ const AddBook = () => {
     const [book, setBook] = useState({
         title: '',
         author: '',
-        //imgURL: '',
-        //base64: '',
         totalAmt: '',
         backText: '',
         tags: ''
