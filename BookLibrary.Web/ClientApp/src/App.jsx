@@ -14,7 +14,7 @@ const App = () => {
                 <Route path='/users' element={<UsersPage />} />
                 <Route path='/books' element={<AllBooks />} />
                 <Route path='/book/:id' element={<SpecificBook />} />
-                <Route path='/addbook' element={<AddBook/> } />
+                <Route path='/addbook' element={<AddBook />} />
             </Routes>
         </Layout>
     );
