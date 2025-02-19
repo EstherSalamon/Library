@@ -33,13 +33,15 @@ const AllBooks = () => {
                 <div className='row row-cols-5 '>
  {/*       <div className='card-group'>*/}
                 {books && books.map(b => 
+                    <a href={`/book/${b.id}`} style={{textDecoration: 'none'} }>
                     <BookCard
                         key={b.id}
                         id={b.id}
                         title={b.title}
                         author={b.author}
                         img={`/api/book/getimg?img=${b.img}` }
-                    />)}
+                        />
+                    </a>)}
             </div>
 
 
