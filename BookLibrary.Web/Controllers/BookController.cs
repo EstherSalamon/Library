@@ -80,7 +80,7 @@ namespace BookLibrary.Web.Controllers
         [Route("getimg")]
         public IActionResult GetImg(string img)
         {
-            byte[] bytes = System.IO.File.ReadAllBytes($"Images/{img}");
+            byte[] bytes = System.IO.File.ReadAllBytes($"Images/{img}"); //getting issue here, but works, so dont know why
             return File(bytes, "image/jpg");
         }
     }

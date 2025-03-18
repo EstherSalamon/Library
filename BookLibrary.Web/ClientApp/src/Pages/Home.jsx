@@ -10,6 +10,7 @@ const Home = () => {
     const [users, setUsers] = useState([]);
     //have deconstructed lending action here
     const [user, setUser] = useState({});
+    const [searchUser, setSearchUser] = useState('');
 
     useEffect(() => {
 
@@ -38,20 +39,29 @@ const Home = () => {
                 <h1>Borrow a book</h1>
                 <h4>User</h4>
                 <select className='form-control' onChange={e => onSelectChange(e) }>
-                    <option key={-1}>--Select--</option>
+                    <option key={-1}>
+                        <input type='text' name='searchUser' value={searchUser} className='form-control' onChange={e => setSearchUser(e.target.value) } placeholder='Search'/>
+                    </option>
                     {users.map(u =>
                         <option key={u.id}>{u.id} - {u.name}</option>)}
                 </select>
                 {user.outstandingBooks >= 8 && <h2>Too many books borrowed, return some before taking out more</h2>}
+                <br />
+                <br/>
                 <hr />
-                <div className='row row-cols-5'>
-                    {books && books.map(b => <BookCard
-                        key={b.id}
-                        id={b.id}
-                        title={b.title}
-                        author={b.author}
-                        img={`/api/book/getimg?img=${b.img}`}
-                    />)}
+                <br />
+                <br/>
+                <div className='row row-cols-5 '>
+                    {books && books.map(b =>
+                        <a href={`/book/${b.id}`} style={{ textDecoration: 'none' }}>
+                            <BookCard
+                                key={b.id}
+                                id={b.id}
+                                title={b.title}
+                                author={b.author}
+                                img={`/api/book/getimg?img=${b.img}`}
+                            />
+                        </a>)}
                 </div>
 
                 {/*have a grid of cards showing all books which can also be a component cuz i want to change the all books page to be like that too
