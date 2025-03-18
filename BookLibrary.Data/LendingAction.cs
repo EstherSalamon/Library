@@ -14,5 +14,6 @@ namespace BookLibrary.Data
         public DateTime DateBorrowed { get; set; }
         public DateTime DateReturned { get; set; }
         public bool Returned { get; set; }
+        //associated book number - is unique per book lent, so if renewed, associated with that one
     }
 }

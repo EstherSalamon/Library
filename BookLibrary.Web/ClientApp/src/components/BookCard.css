@@ -1,4 +1,10 @@
-﻿/** {
+﻿
+.selectedBook {
+    border: 5px solid blue;
+}
+
+
+/** {
     padding: 0;
     margin: 0;
     -webkit-box-sizing: border-box;
